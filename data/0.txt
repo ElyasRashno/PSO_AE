@@ -1,0 +1,5 @@
+The 0 generation...
+g_best:len:4 score:8.72E+00 C[K:2-F:47-L2:0.0011] C[K:3-F:90-L2:0.0100] C[K:4-F:69-L2:0.0013] P[K:2-S:2]
+p_best:len:3 score:2.61E+01 C[K:4-F:26-L2:0.0087] C[K:2-F:54-L2:0.0033] P[K:2-S:2]
+before:len:3 score:2.61E+01 C[K:4-F:26-L2:0.0087] C[K:2-F:54-L2:0.0033] P[K:2-S:2]
+after:len:3 score:2.61E+01 C[K:2-F:47-L2:0.0058] C[K:3-F:83-L2:0.0034] P[K:2-S:2]
