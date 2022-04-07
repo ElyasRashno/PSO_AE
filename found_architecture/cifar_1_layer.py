@@ -1,11 +1,18 @@
 import tensorflow as tf
-import tensorflow.contrib.slim as slim
+# import tensorflow.compat.v1 as tf
+
+# tf.disable_v2_behavior()
+
+# import tensorflow.contrib.slim as slim
+import tf_slim as slim
 from tensorflow.python.ops import control_flow_ops
 from datetime import datetime
 import numpy as np
 import os
-import get_data
-import tensorflow as tf
+import get_data_sec
+
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior() 
 
 '''
 2.79E-03
@@ -56,8 +63,8 @@ def model():
 
         with tf.Session() as sess:
                 sess.run(tf.global_variables_initializer())
-                train_data, train_label = get_data.get_train_data(True)
-                validate_data, validate_label = get_data.get_test_data(True)
+                train_data, train_label = get_data_sec.get_train_data(True)
+                validate_data, validate_label = get_data_sec.get_test_data(True)
                 epochs = total_epochs
                 for current_epoch in range(epochs):
                     train_loss_list = []
@@ -92,6 +99,7 @@ def model():
 if __name__ =='__main__':
     #cuda 2
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-    tf.reset_default_graph()
+    # tf.reset_default_graph()
+    tf.compat.v1.reset_default_graph()
     model() # mean
 

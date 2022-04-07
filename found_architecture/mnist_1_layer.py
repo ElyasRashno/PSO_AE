@@ -1,12 +1,18 @@
 import tensorflow as tf
-import tensorflow.contrib.slim as slim
+# import tensorflow.contrib.slim as slim
+import tf_slim as slim
 from tensorflow.python.ops import control_flow_ops
 from datetime import datetime
 import numpy as np
 import os
-import get_data
+import get_data_sec
 import tensorflow as tf
 from math import sqrt
+
+
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior() 
+
 
 '''
 C[K:2-F:100-L2:0.0010]
@@ -21,7 +27,7 @@ total_epochs = 100
 
 def model():
 
-    x = tf.placeholder(dtype=tf.float32, shape=[batch_size, 32, 32, 1], name='Input')
+    x = tf.placeholder(dtype=tf.float32, shape=[batch_size, 28, 28, 1], name='Input')
     y = tf.placeholder(dtype=tf.float32, shape=[batch_size], name='True_Y')
     y = tf.cast(y, tf.int64)
     keep_prob = tf.placeholder(dtype=tf.float32, shape=(), name='dropout')
@@ -53,8 +59,12 @@ def model():
 
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
-            train_data, train_label = get_data.get_train_data()
-            validate_data, validate_label = get_data.get_test_data()
+            train_data, train_label = get_data_sec.get_train_data()
+            validate_data, validate_label = get_data_sec.get_test_data()
+            train_data = train_data.reshape(60000,28,28,1)
+            train_label = train_label.reshape(60000)
+            validate_data = validate_data.reshape(10000,28,28,1)
+            validate_label = validate_label.reshape(10000)
             epochs = total_epochs
             for current_epoch in range(epochs):
                 train_loss_list = []
